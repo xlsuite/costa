@@ -1,5 +1,13 @@
-# GoCosta Producer Implementation Template v1.0
+# GoCosta Producer Implementation Template v1.1
 ## Ready-to-Use JSON-LD & XML Examples for Cannabis Brands
+
+---
+
+## Before You Start: Content Rules (Canada)
+
+- **No effect or health claims** ("relaxing", "sleep", "pain relief", etc.), no ratings, reviews or testimonials, and no "Health Canada approved" claims. See section 2.7 of the spec.
+- **Potency follows the label:** % for dried cannabis and pre-rolls, mg per package for edibles, mg/g or mg/mL for extracts and topicals.
+- **Class follows the label.** If in doubt, copy the class printed on the package.
 
 ---
 
@@ -77,21 +85,18 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
       "detailed": [
         {
           "name": "Myrcene",
-          "percent": 0.8,
-          "effectCategory": "Relaxing"
+          "percent": 0.8
         },
         {
           "name": "Limonene",
-          "percent": 0.6,
-          "effectCategory": "Uplifting"
+          "percent": 0.6
         }
       ]
     },
-    "dominantEffect": "Relaxing|Energizing|Balanced|Sleep|Pain Relief|Creativity",
     "productForm": "Dried Flower",
     "packageSize": "YOUR_PACKAGE_SIZE",
     "packageWeightGrams": WEIGHT_IN_GRAMS,
-    "classOfCannabis": "Cannabis (dried)",
+    "classOfCannabis": "Dried cannabis",
     "healthCanadaLicenseNum": "YOUR_LICENSE_NUMBER",
     "expiryDate": "YYYY-MM-DD",
     "batchLotNum": "YOUR_BATCH_NUMBER",
@@ -106,13 +111,8 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
     "regulatoryDisclosure": {
       "allergens": ["ALLERGEN_IF_APPLICABLE"],
       "cannabisAccessRequirement": "RecreationalAndMedical",
-      "consumptionWarning": "Keep out of reach of children. For use by adults 19+."
+      "consumptionWarning": "Keep out of reach of children."
     }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": YOUR_RATING,
-    "reviewCount": REVIEW_COUNT
   }
 }
 ```
@@ -159,8 +159,7 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
     "productForm": "Pre-Roll",
     "packageCount": NUMBER_OF_PREROLLS,
     "packageSize": "YOUR_TOTAL_WEIGHT",
-    "dominantEffect": "YOUR_PRIMARY_EFFECT",
-    "classOfCannabis": "Cannabis",
+    "classOfCannabis": "Dried cannabis",
     "healthCanadaLicenseNum": "YOUR_LICENSE_NUMBER",
     "batchLotNum": "YOUR_BATCH_NUMBER"
   }
@@ -199,8 +198,8 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
   "cannabis": {
     "@type": "CannabisProduct",
     "cannabinoidProfile": {
-      "thcPercent": THC_PERCENTAGE,
-      "cbdPercent": CBD_PERCENTAGE
+      "thcConcentration": { "value": THC_MG_PER_G, "unit": "mg/g" },
+      "cbdConcentration": { "value": CBD_MG_PER_G, "unit": "mg/g" }
     },
     "strain": {
       "name": "YOUR_STRAIN_NAME"
@@ -210,8 +209,7 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
     },
     "productForm": "Vape Cartridge",
     "packageSize": "0.5ml",
-    "dominantEffect": "YOUR_EFFECT",
-    "classOfCannabis": "Cannabis oil",
+    "classOfCannabis": "Cannabis extracts",
     "healthCanadaLicenseNum": "YOUR_LICENSE_NUMBER"
   }
 }
@@ -221,14 +219,14 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
 
 ## Template 4: Edible Product (JSON-LD)
 
-**Use this for:** Gummies, chocolates, beverages, capsules, oils
+**Use this for:** Gummies, chocolates, baked goods, beverages (capsules and ingestible oils are cannabis extracts: use Template 5)
 
 ```json
 {
   "@context": "https://schema.org/",
   "@type": "Product",
   "@id": "https://yoursite.ca/products/edible-name",
-  "name": "YOUR_FLAVOR Cannabis Gummies - 10 Pack (10mg THC per piece)",
+  "name": "YOUR_FLAVOR Cannabis Gummies - 2 Pack (5 mg THC each, 10 mg THC total)",
   "brand": {
     "@type": "Brand",
     "name": "YOUR_BRAND_NAME",
@@ -239,7 +237,7 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
   "image": [
     "https://yoursite.ca/images/gummies-package.jpg"
   ],
-  "description": "Delicious cannabis-infused gummies with precise dosing.",
+  "description": "YOUR_PRODUCT_DESCRIPTION",
   "offers": {
     "@type": "Offer",
     "priceCurrency": "CAD",
@@ -249,20 +247,19 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
   "cannabis": {
     "@type": "CannabisProduct",
     "cannabinoidProfile": {
-      "thcPercent": THC_TOTAL_PERCENTAGE,
-      "cbdPercent": CBD_TOTAL_PERCENTAGE
+      "thcTotalMg": 10,
+      "cbdTotalMg": 0,
+      "thcPerUnitMg": 5,
+      "cbdPerUnitMg": 0
     },
     "productForm": "Edible",
-    "packageSize": "10 Pack",
-    "packageCount": 10,
-    "servingSize": "1 Gummy",
-    "thcPerServing": 10,
-    "cbdPerServing": 0,
-    "dominantEffect": "YOUR_EFFECT",
-    "classOfCannabis": "Cannabis",
-    "allergens": ["ALLERGEN_1", "ALLERGEN_2"],
+    "packageSize": "2 pack",
+    "packageCount": 2,
+    "servingSize": "1 gummy",
+    "classOfCannabis": "Edible cannabis",
     "healthCanadaLicenseNum": "YOUR_LICENSE_NUMBER",
     "regulatoryDisclosure": {
+      "allergens": ["ALLERGEN_1", "ALLERGEN_2"],
       "consumptionWarning": "Keep out of reach of children. Effects may take 1-2 hours. Do not drive or operate machinery."
     }
   }
@@ -273,7 +270,7 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
 
 ## Template 5: Cannabis Oil / Tincture (JSON-LD)
 
-**Use this for:** Oils, tinctures, sublingual drops
+**Use this for:** Oils, tinctures, sublingual drops, capsules
 
 ```json
 {
@@ -301,8 +298,10 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
   "cannabis": {
     "@type": "CannabisProduct",
     "cannabinoidProfile": {
-      "thcPercent": THC_PERCENTAGE,
-      "cbdPercent": CBD_PERCENTAGE,
+      "thcConcentration": { "value": 25, "unit": "mg/mL" },
+      "cbdConcentration": { "value": 0, "unit": "mg/mL" },
+      "thcPerUnitMg": 12.5,
+      "cbdPerUnitMg": 0,
       "cannabinoidOther": [
         {"name": "CBN", "percent": 0.2},
         {"name": "CBG", "percent": 0.3}
@@ -313,10 +312,8 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
     },
     "productForm": "Oil",
     "packageSize": "30ml",
-    "servingSize": "0.5ml (1 dropper)",
-    "thcPerServing": 12.5,
-    "cbdPerServing": 0,
-    "classOfCannabis": "Cannabis oil",
+    "servingSize": "0.5 mL (1 dropper)",
+    "classOfCannabis": "Cannabis extracts",
     "healthCanadaLicenseNum": "YOUR_LICENSE_NUMBER"
   }
 }
@@ -387,7 +384,7 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
     </ProductForm>
 
     <RegulatoryData>
-      <ClassOfCannabis>Cannabis (dried)</ClassOfCannabis>
+      <ClassOfCannabis>Dried cannabis</ClassOfCannabis>
       <HealthCanadaLicenseNum>YOUR_LICENSE_NUMBER</HealthCanadaLicenseNum>
       <ExpiryDate>2026-06-15</ExpiryDate>
       <BatchLotNum>HCC-2025-0847</BatchLotNum>
@@ -419,23 +416,24 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
 ## Implementation Checklist
 
 ### Step 1: Data Preparation
-- [ ] Gather all product information (SKU, GTIN, THC%, CBD%, terpenes, effects)
+- [ ] Gather all product information (SKU, GTIN, THC and CBD exactly as on the label, terpenes)
 - [ ] Obtain accurate lab testing data (CoA/test reports)
 - [ ] Take high-quality product photos
 - [ ] Write product descriptions
-- [ ] Collect regulatory compliance info (Health Canada license, expiry dates, batch numbers)
+- [ ] Collect regulatory compliance info (Health Canada license, class of cannabis as printed on your label, expiry dates, batch numbers)
 
 ### Step 2: JSON-LD Implementation (Per Product Page)
 - [ ] Choose the appropriate template above
 - [ ] Replace all placeholder values with your actual data
 - [ ] Validate JSON using [JSON-LD Playground](https://json-ld.org/playground/)
+- [ ] Validate the `cannabis` object against `schemas/gocosta-v1.1.schema.json`
 - [ ] Add the `<script type="application/ld+json">` tag to your product page `<head>`
 - [ ] Test on staging environment
 
 ### Step 3: XML Feed Implementation (Bulk Products)
 - [ ] Create an XML file with all your products using the XML template above
 - [ ] Save as `/feeds/products.xml` or similar on your server
-- [ ] Validate XML structure using an [XML validator](https://www.w3schools.com/xml/xml_validator.asp)
+- [ ] Validate XML against `schemas/gocosta-v1.1.xsd` (e.g., `xmllint --schema schemas/gocosta-v1.1.xsd products.xml --noout`)
 - [ ] Set up automatic daily updates (if products change frequently)
 - [ ] Create an XML sitemap that links to your product feeds
 
@@ -489,4 +487,4 @@ This template provides producers with copy-and-paste JSON-LD and XML examples fo
 
 ---
 
-**GoCosta Producer Template v1.0** | Published: November 2025 | License: CC BY 4.0
+**GoCosta Producer Template v1.1** | Published: November 2025 | Updated: October 2026 | License: CC BY 4.0

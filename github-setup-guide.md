@@ -77,8 +77,8 @@ gocosta/
 │   ├── contributing.md                # How to contribute
 │   └── images/                        # Screenshots and diagrams
 ├── schemas/
-│   ├── gocosta-v1.0.json-schema       # JSON Schema definition
-│   ├── gocosta-v1.0.xsd               # XML Schema definition
+│   ├── gocosta-v1.1.schema.json       # JSON Schema definition
+│   ├── gocosta-v1.1.xsd               # XML Schema definition
 │   └── README.md                      # Schema documentation
 ├── examples/
 │   ├── flower/
@@ -181,7 +181,7 @@ GoCosta is an open, decentralized standard for marking up cannabis product data 
 
 - **Decentralized**: Producers host their own product data; no central gatekeeper
 - **Open**: Built on schema.org and web standards; extensible by design
-- **Cannabis-Focused**: Captures THC%, CBD%, strains, terpenes, effects, and regulatory compliance
+- **Cannabis-Focused**: Captures cannabinoid content, strains, terpenes, and regulatory compliance
 - **Consumer-Centric**: Supports transparency and trust
 - **Interoperable**: Dispensaries, aggregators, and search engines can consume data consistently
 
@@ -194,7 +194,7 @@ GoCosta is an open, decentralized standard for marking up cannabis product data 
 4. [Test Your Data](validators/)
 
 ### For Developers
-1. [Explore the JSON Schema](schemas/gocosta-v1.0.json-schema)
+1. [Explore the JSON Schema](schemas/gocosta-v1.1.schema.json)
 2. [Review Example Data](examples/)
 3. [Run Validators Locally](validators/)
 4. [Contribute to the Schema](CONTRIBUTING.md)
@@ -231,7 +231,7 @@ producers/      → Producer registry and templates
 ### v1.1 (Planned)
 - Enhanced batch and harvest tracking
 - Regional regulatory variations (US state-specific)
-- Medical cannabis certifications
+- Medical-channel availability data
 - Blockchain traceability integration
 
 ### v2.0 (Future)
@@ -363,7 +363,7 @@ All notable changes to GoCosta are documented here.
 ### Added
 - Initial release of GoCosta schema v1.0
 - JSON-LD and XML format support
-- Comprehensive cannabis product attributes (cannabinoids, terpenes, strains, effects)
+- Comprehensive cannabis product attributes (cannabinoids, terpenes, strains)
 - Health Canada regulatory compliance fields
 - U.S. testing and labeling requirements
 - 5 product type templates (flower, pre-roll, vape, edible, oil)
@@ -375,7 +375,7 @@ All notable changes to GoCosta are documented here.
 ### Planned for v1.1
 - Enhanced batch tracking
 - Regional regulatory variations
-- Medical cannabis certifications
+- Medical-channel availability data
 ```
 
 ---
@@ -411,7 +411,7 @@ jobs:
       
       - name: Validate JSON examples against schema
         run: |
-          ajv validate -s schemas/gocosta-v1.0.json-schema -d 'examples/**/*.json' --verbose
+          ajv validate -s schemas/gocosta-v1.1.schema.json -d 'examples/**/*.json' --verbose
       
       - name: Validate JSON-LD with JSON-LD validator
         run: npm install jsonld && node validators/validate-json.js

@@ -173,7 +173,7 @@ cat > "$JSON_FILE" << 'TEMPLATE'
       "cbdPercent": 0.1
     },
     "productForm": "PRODUCT_TYPE",
-    "classOfCannabis": "Cannabis"
+    "classOfCannabis": "CLASS_OF_CANNABIS"
   }
 }
 TEMPLATE
@@ -197,7 +197,7 @@ cat > "$XML_FILE" << 'TEMPLATE'
     <Form>PRODUCT_TYPE</Form>
   </ProductForm>
   <RegulatoryData>
-    <ClassOfCannabis>Cannabis</ClassOfCannabis>
+    <ClassOfCannabis>CLASS_OF_CANNABIS</ClassOfCannabis>
   </RegulatoryData>
 </CannabisProduct>
 TEMPLATE
@@ -207,6 +207,8 @@ echo "✅ XML example: $XML_FILE"
 echo ""
 echo "📝 Edit these files and replace placeholder values:"
 echo "   - PRODUCT_NAME, PRODUCT_TYPE, YOUR_SKU, YOUR_BRAND, YOUR_DESCRIPTION"
+echo "   - CLASS_OF_CANNABIS (one of: Dried cannabis, Fresh cannabis, Cannabis plants,"
+echo "     Cannabis plant seeds, Edible cannabis, Cannabis extracts, Cannabis topicals)"
 echo ""
 ```
 
