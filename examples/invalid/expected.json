@@ -1,0 +1,47 @@
+{
+  "dried-percent-potency": [
+    "schema"
+  ],
+  "form-class-mismatch": [
+    "class-form"
+  ],
+  "gtin-bad-check-digit": [
+    "gtin-check-digit"
+  ],
+  "edible-over-10mg": [
+    "thc-cap",
+    "ca-qc-sqdc"
+  ],
+  "edible-with-expiry": [
+    "ca-expiry"
+  ],
+  "label-vs-lab-out-of-tolerance": [
+    "label-vs-lab"
+  ],
+  "lab-total-thc-miscalculated": [
+    "lab-total-calc"
+  ],
+  "lab-missing-required-tests": [
+    "lab-required-analytes",
+    "lab-contaminants"
+  ],
+  "gtin-overlap-conflict": [
+    "gtin-conflict"
+  ],
+  "ocs-lot-unscannable-chars": [
+    "ca-on-ocs"
+  ],
+  "extract-over-1000mg-and-qc": [
+    "thc-cap",
+    "ca-qc-sqdc"
+  ],
+  "content-claims": [
+    "content"
+  ],
+  "expiry-without-stability-data": [
+    "ca-expiry"
+  ],
+  "ocs-wrong-symbology": [
+    "ca-on-ocs"
+  ]
+}

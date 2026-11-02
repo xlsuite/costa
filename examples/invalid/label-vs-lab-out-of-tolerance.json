@@ -1,0 +1,484 @@
+{
+  "@context": "https://gocosta.org/ns/costa-2.0.jsonld",
+  "@type": "CostaFeed",
+  "costaVersion": "2.0",
+  "publisher": {
+    "name": "Northshore Cannabis Co. (fictional)",
+    "url": "https://northshore.example",
+    "role": "licenceHolder",
+    "healthCanadaLicenceNumbers": [
+      "LIC-XXXX-0000"
+    ],
+    "gs1CompanyPrefixes": [
+      "0628123"
+    ],
+    "jwksUrl": "https://northshore.example/.well-known/costa/jwks.json",
+    "contactEmail": "data@northshore.example"
+  },
+  "generated": "2026-11-02T12:00:00Z",
+  "sequence": 1,
+  "products": [
+    {
+      "@type": "CostaProduct",
+      "costaVersion": "2.0",
+      "costaId": "https://northshore.example/costa/products/8b0e5d22-1f4a-4b8e-b0f7-6c2d9e3a4b21",
+      "recordVersion": 2,
+      "recordUpdated": "2026-10-01T09:00:00Z",
+      "status": "active",
+      "conformsTo": [
+        "ca-federal/2.0",
+        "ca-on-ocs/2.0",
+        "ca-qc-sqdc/2.0"
+      ],
+      "identifiers": {
+        "gtins": [
+          {
+            "gtin": "00628123000204",
+            "packagingLevel": "consumerUnit",
+            "validFrom": "2026-01-15",
+            "validThrough": null,
+            "status": "active",
+            "gs1CompanyPrefix": "0628123",
+            "barcodes": [
+              {
+                "symbology": "GS1 DataMatrix",
+                "applicationIdentifiers": [
+                  "01",
+                  "10",
+                  "13"
+                ]
+              }
+            ]
+          },
+          {
+            "gtin": "10628123000201",
+            "packagingLevel": "case",
+            "childGtin": "00628123000204",
+            "childQuantity": 48,
+            "validFrom": "2026-01-15",
+            "validThrough": null,
+            "status": "active",
+            "gs1CompanyPrefix": "0628123",
+            "barcodes": [
+              {
+                "symbology": "GS1-128",
+                "applicationIdentifiers": [
+                  "01",
+                  "10",
+                  "13"
+                ],
+                "jurisdictions": [
+                  "CA-ON"
+                ]
+              },
+              {
+                "symbology": "GS1-128",
+                "applicationIdentifiers": [
+                  "01",
+                  "13",
+                  "10",
+                  "90"
+                ],
+                "jurisdictions": [
+                  "CA-QC"
+                ]
+              }
+            ]
+          }
+        ],
+        "healthCanadaProductNotice": {
+          "noticeId": "NNCP-000001",
+          "submittedDate": "2025-10-01",
+          "authorizedSaleDate": "2025-11-30"
+        }
+      },
+      "name": {
+        "en": "Wild Blueberry Soft Chews 2 x 5 mg",
+        "fr": "Jujubes bleuet sauvage 2 x 5 mg"
+      },
+      "brand": {
+        "name": "Northshore"
+      },
+      "licenceHolder": {
+        "legalName": "Northshore Cannabis Co. Ltd. (fictional)",
+        "role": "processor",
+        "healthCanadaLicenceNumber": "LIC-XXXX-0000",
+        "phone": "+1 613 555 0100",
+        "email": "info@northshore.example"
+      },
+      "classOfCannabis": "edible cannabis",
+      "productForm": "gummy",
+      "intendedUse": "ingestion",
+      "edibleForm": "solid",
+      "discreteUnits": true,
+      "netContent": {
+        "value": 8,
+        "unit": "g"
+      },
+      "unitCount": 2,
+      "unitNetContent": {
+        "value": 4,
+        "unit": "g"
+      },
+      "driedEquivalentGrams": 0.533,
+      "potency": {
+        "totalThc": {
+          "unit": "mg",
+          "min": 9,
+          "max": 10
+        },
+        "totalCbd": {
+          "unit": "mg",
+          "min": 0,
+          "max": 0.5
+        },
+        "totalThcPerUnit": {
+          "unit": "mg",
+          "min": 4.5,
+          "max": 5
+        },
+        "totalCbdPerUnit": {
+          "unit": "mg",
+          "min": 0,
+          "max": 0.25
+        }
+      },
+      "processing": {
+        "extractionMethods": [
+          "supercriticalCo2",
+          "distillation"
+        ],
+        "fullSpectrum": false
+      },
+      "ingredients": {
+        "en": "Ingredients: sugar, glucose syrup, pectin, blueberry juice concentrate, citric acid, natural flavour, cannabis extract.",
+        "fr": "Ingrédients : sucre, sirop de glucose, pectine, concentré de jus de bleuet, acide citrique, arôme naturel, extrait de cannabis."
+      },
+      "flavour": {
+        "en": "Wild blueberry",
+        "fr": "Bleuet sauvage"
+      },
+      "packaging": {
+        "childResistant": true,
+        "containerType": "Pouch",
+        "materials": [
+          "PET/PE laminate"
+        ]
+      },
+      "descriptions": {
+        "short": {
+          "en": "Two vegan soft chews, 5 mg THC each, made with wild blueberry juice.",
+          "fr": "Deux jujubes végétaliens, 5 mg de THC chacun, au jus de bleuet sauvage."
+        }
+      },
+      "media": [
+        {
+          "url": "https://northshore.example/img/wb-front.jpg",
+          "role": "front",
+          "gtin": "00628123000204",
+          "mediaType": "image/jpeg"
+        },
+        {
+          "url": "https://northshore.example/labels/wb-immediate.pdf",
+          "role": "labelArtworkImmediate",
+          "gtin": "00628123000204",
+          "mediaType": "application/pdf"
+        }
+      ],
+      "jurisdictions": [
+        {
+          "jurisdiction": "CA-ON",
+          "authority": "OCS",
+          "status": "listed",
+          "category": "Edibles"
+        },
+        {
+          "jurisdiction": "CA-QC",
+          "authority": "SQDC",
+          "status": "listed",
+          "category": "Comestibles"
+        }
+      ],
+      "lots": [
+        {
+          "@type": "CostaLot",
+          "costaVersion": "2.0",
+          "lotId": "https://northshore.example/costa/lots/WB2609B",
+          "product": "https://northshore.example/costa/products/8b0e5d22-1f4a-4b8e-b0f7-6c2d9e3a4b21",
+          "gtin": "00628123000204",
+          "lotNumber": "WB2609B",
+          "packagingDate": "2026-09-22",
+          "labelledPotency": {
+            "totalThc": {
+              "unit": "mg",
+              "value": 10
+            },
+            "totalCbd": {
+              "unit": "mg",
+              "value": 0
+            },
+            "totalThcPerUnit": {
+              "unit": "mg",
+              "value": 5
+            },
+            "totalCbdPerUnit": {
+              "unit": "mg",
+              "value": 0
+            }
+          },
+          "labReports": [
+            {
+              "reportId": "https://lab.example/reports/EAL-26-09877",
+              "scope": "finalForm",
+              "sha256": "33b0dac15402c0c98fed4124d6a3330605eca68dbf3cd896b0de981458cf1cbd"
+            }
+          ],
+          "qaRelease": {
+            "releasedDate": "2026-09-29"
+          }
+        }
+      ]
+    }
+  ],
+  "labReports": [
+    {
+      "@type": "CostaLabReport",
+      "costaVersion": "2.0",
+      "reportId": "https://lab.example/reports/EAL-26-09877",
+      "reportNumber": "EAL-26-09877",
+      "revision": 0,
+      "laboratory": {
+        "legalName": "Example Analytical Labs Inc. (fictional)",
+        "healthCanadaLicenceNumber": "LIC-LAB-0000",
+        "accreditations": [
+          {
+            "standard": "ISO/IEC 17025:2017",
+            "body": "Standards Council of Canada",
+            "certificateNumber": "EX-0000",
+            "validThrough": "2027-12-31"
+          }
+        ]
+      },
+      "client": {
+        "legalName": "Northshore Cannabis Co. Ltd. (fictional)",
+        "healthCanadaLicenceNumber": "LIC-XXXX-0000"
+      },
+      "sample": {
+        "sampleId": "S-EAL-26-09877",
+        "lotNumber": "WB2609B",
+        "gtin": "00628123000204",
+        "product": "https://northshore.example/costa/products/8b0e5d22-1f4a-4b8e-b0f7-6c2d9e3a4b21",
+        "sampleType": "finalForm",
+        "matrix": "edibleSolid",
+        "collectedDate": "2026-09-22",
+        "receivedDate": "2026-09-23"
+      },
+      "analysisStarted": "2026-09-23",
+      "analysisCompleted": "2026-09-27",
+      "issuedDate": "2026-09-27",
+      "authorizedBy": {
+        "name": "J. Analyst (fictional)",
+        "title": "Quality Manager",
+        "signedDate": "2026-09-27"
+      },
+      "panels": [
+        {
+          "panel": "potency",
+          "method": {
+            "id": "EX-HPLC-01",
+            "technique": "HPLC-DAD",
+            "validated": true
+          },
+          "status": "informational",
+          "results": [
+            {
+              "analyte": "THC",
+              "qualifier": "=",
+              "value": 3.9,
+              "unit": "mg/unit",
+              "loq": 0.1
+            },
+            {
+              "analyte": "THCA",
+              "qualifier": "<LOQ",
+              "unit": "mg/unit",
+              "loq": 0.1
+            },
+            {
+              "analyte": "CBD",
+              "qualifier": "<LOQ",
+              "unit": "mg/unit",
+              "loq": 0.1
+            },
+            {
+              "analyte": "CBDA",
+              "qualifier": "<LOQ",
+              "unit": "mg/unit",
+              "loq": 0.1
+            },
+            {
+              "analyte": "Total THC",
+              "qualifier": "=",
+              "value": 3.9,
+              "unit": "mg/unit"
+            },
+            {
+              "analyte": "Total CBD",
+              "qualifier": "<LOQ",
+              "unit": "mg/unit"
+            }
+          ]
+        },
+        {
+          "panel": "microbial",
+          "method": {
+            "id": "EX-MIC-01",
+            "reference": "USP <2021>/<2022>",
+            "validated": true
+          },
+          "status": "pass",
+          "results": [
+            {
+              "analyte": "Total aerobic microbial count",
+              "qualifier": "=",
+              "value": 1200,
+              "unit": "CFU/g",
+              "limit": 100000,
+              "limitType": "max",
+              "conforms": true
+            },
+            {
+              "analyte": "Total yeast and mould count",
+              "qualifier": "=",
+              "value": 300,
+              "unit": "CFU/g",
+              "limit": 10000,
+              "limitType": "max",
+              "conforms": true
+            },
+            {
+              "analyte": "Escherichia coli",
+              "qualifier": "ND",
+              "unit": "CFU/g",
+              "conforms": true
+            },
+            {
+              "analyte": "Salmonella spp.",
+              "qualifier": "ND",
+              "unit": "per 10 g",
+              "conforms": true
+            }
+          ]
+        },
+        {
+          "panel": "heavyMetals",
+          "method": {
+            "id": "EX-ICPMS-01",
+            "technique": "ICP-MS",
+            "validated": true
+          },
+          "status": "pass",
+          "results": [
+            {
+              "analyte": "Arsenic",
+              "casNumber": "7440-38-2",
+              "qualifier": "<LOQ",
+              "unit": "µg/g",
+              "loq": 0.05,
+              "limit": 0.2,
+              "limitType": "max",
+              "conforms": true
+            },
+            {
+              "analyte": "Cadmium",
+              "casNumber": "7440-43-9",
+              "qualifier": "<LOQ",
+              "unit": "µg/g",
+              "loq": 0.05,
+              "limit": 0.2,
+              "limitType": "max",
+              "conforms": true
+            },
+            {
+              "analyte": "Lead",
+              "casNumber": "7439-92-1",
+              "qualifier": "=",
+              "value": 0.08,
+              "unit": "µg/g",
+              "loq": 0.05,
+              "limit": 0.5,
+              "limitType": "max",
+              "conforms": true
+            },
+            {
+              "analyte": "Mercury",
+              "casNumber": "7439-97-6",
+              "qualifier": "<LOQ",
+              "unit": "µg/g",
+              "loq": 0.02,
+              "limit": 0.1,
+              "limitType": "max",
+              "conforms": true
+            }
+          ]
+        },
+        {
+          "panel": "mycotoxins",
+          "method": {
+            "id": "EX-LCMS-02",
+            "technique": "LC-MS/MS",
+            "validated": true
+          },
+          "status": "pass",
+          "results": [
+            {
+              "analyte": "Total aflatoxins",
+              "qualifier": "<LOQ",
+              "unit": "µg/kg",
+              "loq": 2,
+              "limit": 20,
+              "limitType": "max",
+              "conforms": true
+            },
+            {
+              "analyte": "Ochratoxin A",
+              "qualifier": "<LOQ",
+              "unit": "µg/kg",
+              "loq": 2,
+              "limit": 20,
+              "limitType": "max",
+              "conforms": true
+            }
+          ]
+        },
+        {
+          "panel": "homogeneity",
+          "method": {
+            "id": "EX-HOM-01",
+            "validated": true
+          },
+          "status": "pass",
+          "results": [
+            {
+              "analyte": "THC RSD across units",
+              "qualifier": "=",
+              "value": 4.1,
+              "unit": "%",
+              "limit": 25,
+              "limitType": "max",
+              "conforms": true
+            }
+          ]
+        }
+      ],
+      "overallConformance": "pass",
+      "document": {
+        "url": "https://lab.example/reports/EAL-26-09877.pdf",
+        "mediaType": "application/pdf",
+        "sha256": "33b0dac15402c0c98fed4124d6a3330605eca68dbf3cd896b0de981458cf1cbd",
+        "pages": 4
+      },
+      "visibility": "tradePartners"
+    }
+  ]
+}

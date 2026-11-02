@@ -1,0 +1,156 @@
+{
+  "@context": "https://gocosta.org/ns/costa-2.0.jsonld",
+  "@type": "CostaFeed",
+  "costaVersion": "2.0",
+  "publisher": {
+    "name": "Northshore Cannabis Co. (fictional)",
+    "url": "https://northshore.example",
+    "role": "licenceHolder",
+    "healthCanadaLicenceNumbers": [
+      "LIC-XXXX-0000"
+    ],
+    "gs1CompanyPrefixes": [
+      "0628123"
+    ],
+    "jwksUrl": "https://northshore.example/.well-known/costa/jwks.json",
+    "contactEmail": "data@northshore.example"
+  },
+  "generated": "2026-11-02T12:00:00Z",
+  "sequence": 1,
+  "products": [
+    {
+      "@type": "CostaProduct",
+      "costaVersion": "2.0",
+      "costaId": "https://oldbrand.example/costa/products/legacy-1",
+      "recordVersion": 3,
+      "recordUpdated": "2026-01-10T00:00:00Z",
+      "status": "discontinued",
+      "conformsTo": [
+        "ca-federal/2.0"
+      ],
+      "identifiers": {
+        "gtins": [
+          {
+            "gtin": "00628123000402",
+            "packagingLevel": "consumerUnit",
+            "validFrom": "2018-10-17",
+            "validThrough": "2019-06-30",
+            "status": "retired",
+            "retiredReason": "discontinued",
+            "gs1CompanyPrefix": "0628123",
+            "note": "Withdrawn before 2019-01-01 non-reuse rule took full effect; GTIN later reused once under GS1 GSCN 18-120."
+          }
+        ]
+      },
+      "name": {
+        "en": "Legacy Sativa 1 g"
+      },
+      "brand": {
+        "name": "Old Brand (fictional)"
+      },
+      "licenceHolder": {
+        "legalName": "Old Brand Inc. (fictional)",
+        "role": "processor",
+        "healthCanadaLicenceNumber": "LIC-XXXX-0000",
+        "phone": "+1 613 555 0100",
+        "email": "info@northshore.example"
+      },
+      "classOfCannabis": "dried cannabis",
+      "productForm": "driedFlower",
+      "discreteUnits": false,
+      "netContent": {
+        "value": 1,
+        "unit": "g"
+      },
+      "potency": {
+        "totalThc": {
+          "unit": "mg/g",
+          "min": 150,
+          "max": 190
+        },
+        "totalCbd": {
+          "unit": "mg/g",
+          "min": 0,
+          "max": 5
+        }
+      }
+    },
+    {
+      "@type": "CostaProduct",
+      "costaVersion": "2.0",
+      "costaId": "https://northshore.example/costa/products/1a7f3c55-2d90-4e1b-9c6a-5f8e7d6c4b43",
+      "recordVersion": 1,
+      "recordUpdated": "2026-02-01T00:00:00Z",
+      "status": "active",
+      "conformsTo": [
+        "ca-federal/2.0"
+      ],
+      "identifiers": {
+        "gtins": [
+          {
+            "gtin": "00628123000402",
+            "packagingLevel": "consumerUnit",
+            "validFrom": "2019-03-01",
+            "validThrough": null,
+            "status": "active",
+            "gs1CompanyPrefix": "0628123",
+            "note": "Prefix acquired with Old Brand assets; GTIN reused one final time for a different item."
+          }
+        ],
+        "supersedes": [
+          {
+            "costaId": "https://oldbrand.example/costa/products/legacy-1",
+            "reason": "licenceHolderChange",
+            "effectiveDate": "2023-07-01"
+          }
+        ]
+      },
+      "name": {
+        "en": "Blue Dream Pre-Roll 3 x 0.5 g",
+        "fr": "Blue Dream préroulés 3 x 0,5 g"
+      },
+      "brand": {
+        "name": "Northshore"
+      },
+      "licenceHolder": {
+        "legalName": "Northshore Cannabis Co. Ltd. (fictional)",
+        "role": "processor",
+        "healthCanadaLicenceNumber": "LIC-XXXX-0000",
+        "phone": "+1 613 555 0100",
+        "email": "info@northshore.example"
+      },
+      "classOfCannabis": "dried cannabis",
+      "productForm": "preRoll",
+      "intendedUse": "inhalation",
+      "discreteUnits": true,
+      "netContent": {
+        "value": 1.5,
+        "unit": "g"
+      },
+      "unitCount": 3,
+      "unitNetContent": {
+        "value": 0.5,
+        "unit": "g"
+      },
+      "driedEquivalentGrams": 1.5,
+      "potency": {
+        "totalThc": {
+          "unit": "mg/g",
+          "min": 170,
+          "max": 220
+        },
+        "totalCbd": {
+          "unit": "mg/g",
+          "min": 0,
+          "max": 5
+        }
+      },
+      "preRoll": {
+        "shape": "cone",
+        "paperType": "unbleached hemp",
+        "filterType": "paper crutch",
+        "infused": false
+      }
+    }
+  ]
+}
