@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CostaProduct xmlns="https://gocosta.org/ns/2.0">
+  <costaVersion>2.0</costaVersion>
+  <costaId>https://northshore.example/costa/products/c4d1a7e9-5e62-4f1d-8a2b-3b7c0d9f6e32</costaId>
+  <recordVersion>1</recordVersion>
+  <recordUpdated>2026-08-12T16:20:00Z</recordUpdated>
+  <status>active</status>
+  <conformsTo>ca-federal/2.0</conformsTo>
+  <conformsTo>ca-on-ocs/2.0</conformsTo>
+  <identifiers>
+    <gtins>
+      <gtin>00628123000303</gtin>
+      <packagingLevel>consumerUnit</packagingLevel>
+      <validFrom>2026-08-01</validFrom>
+      <status>active</status>
+      <barcodes>
+        <symbology>GS1 DataMatrix</symbology>
+        <applicationIdentifiers>01</applicationIdentifiers>
+        <applicationIdentifiers>10</applicationIdentifiers>
+        <applicationIdentifiers>13</applicationIdentifiers>
+      </barcodes>
+    </gtins>
+    <gtins>
+      <gtin>10628123000300</gtin>
+      <packagingLevel>case</packagingLevel>
+      <childGtin>00628123000303</childGtin>
+      <childQuantity>50</childQuantity>
+      <validFrom>2026-08-01</validFrom>
+      <status>active</status>
+      <barcodes>
+        <symbology>GS1-128</symbology>
+        <applicationIdentifiers>01</applicationIdentifiers>
+        <applicationIdentifiers>10</applicationIdentifiers>
+      </barcodes>
+    </gtins>
+  </identifiers>
+  <name>
+    <en>Northern Lights Live Resin 510 Cartridge 1 g</en>
+    <fr>Cartouche 510 résine vivante Northern Lights 1 g</fr>
+  </name>
+  <brand>
+    <name>Northshore</name>
+  </brand>
+  <licenceHolder>
+    <legalName>Northshore Cannabis Co. Ltd. (fictional)</legalName>
+    <role>processor</role>
+    <healthCanadaLicenceNumber>LIC-XXXX-0000</healthCanadaLicenceNumber>
+    <phone>+1 613 555 0100</phone>
+    <email>info@northshore.example</email>
+  </licenceHolder>
+  <classOfCannabis>cannabis extracts</classOfCannabis>
+  <productForm>vapeCartridge</productForm>
+  <intendedUse>inhalation</intendedUse>
+  <discreteUnits>false</discreteUnits>
+  <netContent>
+    <value>1</value>
+    <unit>g</unit>
+  </netContent>
+  <potency>
+    <totalThc>
+      <unit>mg/g</unit>
+      <min>760</min>
+      <max>840</max>
+    </totalThc>
+    <totalCbd>
+      <unit>mg/g</unit>
+      <min>0</min>
+      <max>5</max>
+    </totalCbd>
+  </potency>
+  <terpenes>
+    <dominant>beta-Myrcene</dominant>
+    <dominant>Limonene</dominant>
+    <terpeneSource>cannabisDerivedSameStrain</terpeneSource>
+  </terpenes>
+  <strain>
+    <name>Northern Lights</name>
+    <plantType>indicaDominant</plantType>
+    <singleStrain>true</singleStrain>
+  </strain>
+  <processing>
+    <extractionMethods>hydrocarbon</extractionMethods>
+    <solventsUsed>butane</solventsUsed>
+    <solventsUsed>propane</solventsUsed>
+    <solventless>false</solventless>
+  </processing>
+  <device>
+    <format>510Thread</format>
+    <batteryIncluded>false</batteryIncluded>
+    <hardwareCertifications>UL 8139</hardwareCertifications>
+  </device>
+  <packaging>
+    <childResistant>true</childResistant>
+    <materials>paperboard</materials>
+  </packaging>
+  <media>
+    <url>https://northshore.example/img/nl-cart.jpg</url>
+    <role>front</role>
+    <gtin>00628123000303</gtin>
+  </media>
+  <media>
+    <url>https://northshore.example/labels/nl-cart.pdf</url>
+    <role>labelArtworkImmediate</role>
+    <gtin>00628123000303</gtin>
+  </media>
+  <jurisdictions>
+    <jurisdiction>CA-ON</jurisdiction>
+    <authority>OCS</authority>
+    <status>submitted</status>
+    <category>Vapes</category>
+  </jurisdictions>
+</CostaProduct>
