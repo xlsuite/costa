@@ -1,0 +1,218 @@
+{
+  "@context": "https://gocosta.org/ns/costa-2.0.jsonld",
+  "@type": "CostaProduct",
+  "costaVersion": "2.0",
+  "costaId": "https://northshore.example/costa/products/3f2a9c1e-7b1d-4c55-9a43-0d6b8f1e2a10",
+  "recordVersion": 4,
+  "recordUpdated": "2026-10-28T14:05:00Z",
+  "status": "active",
+  "conformsTo": [
+    "ca-federal/2.0",
+    "ca-on-ocs/2.0",
+    "ca-bc-bcldb/2.0"
+  ],
+  "identifiers": {
+    "gtins": [
+      {
+        "gtin": "00628123000105",
+        "packagingLevel": "consumerUnit",
+        "validFrom": "2026-03-01",
+        "validThrough": null,
+        "status": "active",
+        "gs1CompanyPrefix": "0628123",
+        "barcodes": [
+          {
+            "symbology": "GS1 DataMatrix",
+            "applicationIdentifiers": [
+              "01",
+              "10",
+              "13"
+            ]
+          }
+        ]
+      },
+      {
+        "gtin": "10628123000102",
+        "packagingLevel": "case",
+        "childGtin": "00628123000105",
+        "childQuantity": 24,
+        "validFrom": "2026-03-01",
+        "validThrough": null,
+        "status": "active",
+        "gs1CompanyPrefix": "0628123",
+        "barcodes": [
+          {
+            "symbology": "GS1-128",
+            "applicationIdentifiers": [
+              "01",
+              "10",
+              "13"
+            ]
+          }
+        ]
+      }
+    ],
+    "sku": "NSC-NL-DF-3.5",
+    "healthCanadaProductNotice": {
+      "noticeId": "NNCP-000000",
+      "submittedDate": "2025-12-15",
+      "authorizedSaleDate": "2026-02-13"
+    },
+    "jurisdictionSkus": [
+      {
+        "jurisdiction": "CA-ON",
+        "authority": "OCS",
+        "sku": "000000"
+      },
+      {
+        "jurisdiction": "CA-BC",
+        "authority": "BCLDB",
+        "sku": "0000000"
+      }
+    ]
+  },
+  "name": {
+    "en": "Northern Lights Dried Flower 3.5 g",
+    "fr": "Northern Lights fleurs séchées 3,5 g"
+  },
+  "brand": {
+    "name": "Northshore",
+    "url": "https://northshore.example",
+    "owner": "Northshore Cannabis Co. Ltd. (fictional)"
+  },
+  "licenceHolder": {
+    "legalName": "Northshore Cannabis Co. Ltd. (fictional)",
+    "role": "processor",
+    "healthCanadaLicenceNumber": "LIC-XXXX-0000",
+    "phone": "+1 613 555 0100",
+    "email": "info@northshore.example"
+  },
+  "classOfCannabis": "dried cannabis",
+  "productForm": "driedFlower",
+  "discreteUnits": false,
+  "netContent": {
+    "value": 3.5,
+    "unit": "g"
+  },
+  "driedEquivalentGrams": 3.5,
+  "potency": {
+    "totalThc": {
+      "unit": "%",
+      "min": 20,
+      "max": 26
+    },
+    "totalCbd": {
+      "unit": "mg/g",
+      "min": 0,
+      "max": 2
+    }
+  },
+  "cannabinoidsOther": [
+    {
+      "analyte": "CBG",
+      "unit": "mg/g",
+      "min": 3,
+      "max": 8
+    }
+  ],
+  "terpenes": {
+    "dominant": [
+      "beta-Myrcene",
+      "beta-Caryophyllene",
+      "Limonene"
+    ],
+    "typical": [
+      {
+        "analyte": "beta-Myrcene",
+        "unit": "mg/g",
+        "min": 5,
+        "max": 9
+      }
+    ],
+    "terpeneSource": "none"
+  },
+  "strain": {
+    "name": "Northern Lights",
+    "plantType": "indicaDominant",
+    "lineage": [
+      "Afghani",
+      "Thai"
+    ],
+    "singleStrain": true
+  },
+  "cultivation": {
+    "growingMethod": "indoor",
+    "growingMedium": "coco",
+    "cultivatedIn": [
+      "CA-ON"
+    ],
+    "trimMethod": "hand",
+    "dryingMethod": "Hang-dried 10-14 days",
+    "irradiated": false
+  },
+  "packaging": {
+    "childResistant": true,
+    "containerType": "Glass jar",
+    "materials": [
+      "glass",
+      "polypropylene"
+    ]
+  },
+  "storageConditions": {
+    "en": "Store in a cool, dry place.",
+    "fr": "Conserver dans un endroit frais et sec."
+  },
+  "descriptions": {
+    "short": {
+      "en": "Indoor-grown, hand-trimmed Northern Lights with an earthy, sweet pine aroma.",
+      "fr": "Northern Lights cultivée à l’intérieur, taillée à la main, arôme terreux et pin sucré."
+    },
+    "long": {
+      "en": "Grown indoors in coco under LED, hang-dried for 10 to 14 days and hand-trimmed in small batches. Dominant terpenes are beta-myrcene, beta-caryophyllene and limonene."
+    }
+  },
+  "media": [
+    {
+      "url": "https://northshore.example/img/nl-35-front.jpg",
+      "role": "front",
+      "gtin": "00628123000105",
+      "mediaType": "image/jpeg",
+      "widthPx": 2400,
+      "heightPx": 2400,
+      "sha256": "2d8d693177ac44895fc02c009ec3f6af32e51eb00783c17000d7051d1662b93a"
+    },
+    {
+      "url": "https://northshore.example/img/nl-35-product.jpg",
+      "role": "productOut",
+      "gtin": "00628123000105",
+      "mediaType": "image/jpeg",
+      "widthPx": 2400,
+      "heightPx": 2400,
+      "sha256": "762069bc07a6e1b5df123a5ae7bd91c10daa04694fbaa17fba0cd6a8dcce8f22"
+    },
+    {
+      "url": "https://northshore.example/labels/nl-35-immediate.pdf",
+      "role": "labelArtworkImmediate",
+      "gtin": "00628123000105",
+      "mediaType": "application/pdf",
+      "sha256": "1aca80e8b55c802f7b43740da2990e1b5735bbb323d93eb5ebda8395b04025e2"
+    }
+  ],
+  "jurisdictions": [
+    {
+      "jurisdiction": "CA-ON",
+      "authority": "OCS",
+      "status": "listed",
+      "category": "Dried Flower",
+      "listedFrom": "2026-04-01"
+    },
+    {
+      "jurisdiction": "CA-BC",
+      "authority": "BCLDB",
+      "status": "listed",
+      "category": "Dried Flower",
+      "subcategory": "Indica Dominant",
+      "listedFrom": "2026-05-01"
+    }
+  ]
+}

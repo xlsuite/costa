@@ -1,0 +1,46 @@
+{
+  "id": "ca-qc-sqdc",
+  "version": "2.0",
+  "status": "normative",
+  "jurisdiction": "CA-QC",
+  "authority": "Société québécoise du cannabis (SQDC)",
+  "description": "SQDC supplier requirements plus Quebec product restrictions. Quebec is the strictest jurisdiction; a product that passes this profile is not necessarily allowed elsewhere, and vice versa.",
+  "sources": [
+    { "title": "SQDC Supplier's Guide (February 2024)", "url": "https://www.sqdc.ca/media/047363d1-16f1-4916-be1d-34704c290350/AHNxRg/Olive/Faire%20affaire/2024-01%20-%20Guide%20du%20Fournisseur%20-%20bilingue.pdf", "checked": "2026-11-02" },
+    { "title": "SQDC Guide de création d'un nouveau produit (August 2024)", "url": "https://www.sqdc.ca/media/eca062c9-ae45-4703-b3f1-60d6e05888ec/hLlApw/Olive/Faire%20affaire/2024-08%20-%20Guide%20de%20cr%C3%A9ation%20d'un%20nouveau%20produit.pdf", "checked": "2026-11-02" }
+  ],
+  "rules": {
+    "requireLocales": ["fr"],
+    "requireGtinLevels": ["consumerUnit", "case"],
+    "requireHealthCanadaNotice": true,
+    "requireListing": true,
+    "requireMediaRoles": ["labelArtworkImmediate"],
+    "minImages": 1,
+    "prohibitedClasses": ["cannabis topicals"],
+    "prohibitedForms": ["candy", "chocolate", "bakedGood", "vapeCartridge", "vapeDisposable", "vapePod"],
+    "maxThcMgPerGNonEdible": 300,
+    "maxEdibleThcMgPerUnit": 5,
+    "maxNonSolidEdibleThcMgPerContainer": 5,
+    "barcode": {
+      "symbologies": {
+        "consumerUnit": ["GS1 DataMatrix", "GS1 DataBar Expanded", "GS1 DataBar Expanded Stacked"],
+        "case": ["GS1-128"]
+      },
+      "requiredAIs": { "consumerUnit": ["01", "13", "10"], "case": ["01", "13", "10", "90"] }
+    },
+    "requireLabReportPerLot": false,
+    "minShelfLifeDays": 90,
+    "freshness": {
+      "groups": { "driedAndPreRolls": ["driedFlower", "milledFlower", "preRoll", "infusedPreRoll"] },
+      "limitsDays": { "driedAndPreRolls": { "inbound": 274, "quarantine": 274 } }
+    }
+  },
+  "notes": [
+    "The SQDC requires AI (90) quantity-per-case on case labels; the OCS forbids AI (90). A product sold in both needs different case labels.",
+    "Full COA for the first lot before the first shipment; later COAs on request.",
+    "Cultivé Québec identifier requires at least 65% Quebec-grown input; record it in jurisdictions[].cultiveQuebec.",
+    "French must be at least as prominent as any other language on the label; French product names are preferred.",
+    "Ready-to-drink beverages in aluminium cans need an additional UPC-A for the deposit program.",
+    "$1,000 listing fee per product."
+  ]
+}

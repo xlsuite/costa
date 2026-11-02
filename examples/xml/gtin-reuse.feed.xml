@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CostaFeed xmlns="https://gocosta.org/ns/2.0">
+  <costaVersion>2.0</costaVersion>
+  <publisher>
+    <name>Northshore Cannabis Co. (fictional)</name>
+    <url>https://northshore.example</url>
+    <role>licenceHolder</role>
+    <healthCanadaLicenceNumbers>LIC-XXXX-0000</healthCanadaLicenceNumbers>
+    <gs1CompanyPrefixes>0628123</gs1CompanyPrefixes>
+    <jwksUrl>https://northshore.example/.well-known/costa/jwks.json</jwksUrl>
+    <contactEmail>data@northshore.example</contactEmail>
+  </publisher>
+  <generated>2026-11-02T12:00:00Z</generated>
+  <sequence>77</sequence>
+  <products>
+    <costaVersion>2.0</costaVersion>
+    <costaId>https://oldbrand.example/costa/products/legacy-1</costaId>
+    <recordVersion>3</recordVersion>
+    <recordUpdated>2026-01-10T00:00:00Z</recordUpdated>
+    <status>discontinued</status>
+    <conformsTo>ca-federal/2.0</conformsTo>
+    <identifiers>
+      <gtins>
+        <gtin>00628123000402</gtin>
+        <packagingLevel>consumerUnit</packagingLevel>
+        <validFrom>2018-10-17</validFrom>
+        <validThrough>2019-06-30</validThrough>
+        <status>retired</status>
+        <retiredReason>discontinued</retiredReason>
+        <gs1CompanyPrefix>0628123</gs1CompanyPrefix>
+        <note>Withdrawn before 2019-01-01 non-reuse rule took full effect; GTIN later reused once under GS1 GSCN 18-120.</note>
+      </gtins>
+    </identifiers>
+    <name>
+      <en>Legacy Sativa 1 g</en>
+    </name>
+    <brand>
+      <name>Old Brand (fictional)</name>
+    </brand>
+    <licenceHolder>
+      <legalName>Old Brand Inc. (fictional)</legalName>
+      <role>processor</role>
+      <healthCanadaLicenceNumber>LIC-XXXX-0000</healthCanadaLicenceNumber>
+      <phone>+1 613 555 0100</phone>
+      <email>info@northshore.example</email>
+    </licenceHolder>
+    <classOfCannabis>dried cannabis</classOfCannabis>
+    <productForm>driedFlower</productForm>
+    <discreteUnits>false</discreteUnits>
+    <netContent>
+      <value>1</value>
+      <unit>g</unit>
+    </netContent>
+    <potency>
+      <totalThc>
+        <unit>mg/g</unit>
+        <min>150</min>
+        <max>190</max>
+      </totalThc>
+      <totalCbd>
+        <unit>mg/g</unit>
+        <min>0</min>
+        <max>5</max>
+      </totalCbd>
+    </potency>
+  </products>
+  <products>
+    <costaVersion>2.0</costaVersion>
+    <costaId>https://northshore.example/costa/products/1a7f3c55-2d90-4e1b-9c6a-5f8e7d6c4b43</costaId>
+    <recordVersion>1</recordVersion>
+    <recordUpdated>2026-02-01T00:00:00Z</recordUpdated>
+    <status>active</status>
+    <conformsTo>ca-federal/2.0</conformsTo>
+    <identifiers>
+      <gtins>
+        <gtin>00628123000402</gtin>
+        <packagingLevel>consumerUnit</packagingLevel>
+        <validFrom>2023-07-01</validFrom>
+        <status>active</status>
+        <gs1CompanyPrefix>0628123</gs1CompanyPrefix>
+        <note>Prefix acquired with Old Brand assets; GTIN reused one final time for a different item.</note>
+      </gtins>
+      <supersedes>
+        <costaId>https://oldbrand.example/costa/products/legacy-1</costaId>
+        <reason>licenceHolderChange</reason>
+        <effectiveDate>2023-07-01</effectiveDate>
+      </supersedes>
+    </identifiers>
+    <name>
+      <en>Blue Dream Pre-Roll 3 x 0.5 g</en>
+      <fr>Blue Dream préroulés 3 x 0,5 g</fr>
+    </name>
+    <brand>
+      <name>Northshore</name>
+    </brand>
+    <licenceHolder>
+      <legalName>Northshore Cannabis Co. Ltd. (fictional)</legalName>
+      <role>processor</role>
+      <healthCanadaLicenceNumber>LIC-XXXX-0000</healthCanadaLicenceNumber>
+      <phone>+1 613 555 0100</phone>
+      <email>info@northshore.example</email>
+    </licenceHolder>
+    <classOfCannabis>dried cannabis</classOfCannabis>
+    <productForm>preRoll</productForm>
+    <intendedUse>inhalation</intendedUse>
+    <discreteUnits>true</discreteUnits>
+    <netContent>
+      <value>1.5</value>
+      <unit>g</unit>
+    </netContent>
+    <unitCount>3</unitCount>
+    <unitNetContent>
+      <value>0.5</value>
+      <unit>g</unit>
+    </unitNetContent>
+    <driedEquivalentGrams>1.5</driedEquivalentGrams>
+    <potency>
+      <totalThc>
+        <unit>mg/g</unit>
+        <min>170</min>
+        <max>220</max>
+      </totalThc>
+      <totalCbd>
+        <unit>mg/g</unit>
+        <min>0</min>
+        <max>5</max>
+      </totalCbd>
+    </potency>
+    <preRoll>
+      <paperType>unbleached hemp</paperType>
+      <filterType>paper crutch</filterType>
+      <shape>cone</shape>
+      <infused>false</infused>
+    </preRoll>
+  </products>
+</CostaFeed>

@@ -1,0 +1,16 @@
+{
+  "name": "costa-tools",
+  "version": "1.0.0",
+  "description": "COSTA 2.0 reference validator and XML tools",
+  "scripts": {
+    "test": "node test.mjs && node gen-xsd.mjs --check",
+    "validate": "node validate.mjs",
+    "gen-xsd": "node gen-xsd.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "private": true
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ca-on-ocs",
+  "version": "2.0",
+  "status": "normative",
+  "jurisdiction": "CA-ON",
+  "authority": "Ontario Cannabis Store (OCS)",
+  "description": "Data the OCS needs at item setup and per lot. The OCS also requires suppliers to obtain GTINs, barcodes, product images and ECCnet Registry listing through GS1 Canada; a COSTA record does not replace that requirement today.",
+  "sources": [
+    { "title": "OCS Supplier Manual (July 2023)", "url": "https://www.doingbusinesswithocs.ca/wp-content/uploads/2023/07/OCS-Supplier-Manual-2023.pdf", "checked": "2026-11-02" },
+    { "title": "OCS Product Description Guidelines (June 2025)", "url": "https://www.doingbusinesswithocs.ca/wp-content/uploads/2025/07/OCS-Product-Description-Guidelines-2025.pdf", "checked": "2026-11-02" },
+    { "title": "OCS Cannabis and Cannabis Accessory Barcode Standards", "url": "https://doingbusinesswithocs.ca/barcode-standards", "checked": "2026-11-02" },
+    { "title": "OCS GS1 requirements", "url": "https://doingbusinesswithocs.ca/gs1", "checked": "2026-11-02" },
+    { "title": "GS1 Canada, GS1 DataMatrix FAQ for the Canadian cannabis community", "url": "https://gs1ca.org/gs1ca-components/documents/Cannabis-GS1-DataMatrix-FAQ-en.pdf", "checked": "2026-11-02" }
+  ],
+  "rules": {
+    "requireLocales": ["en"],
+    "requireGtinLevels": ["consumerUnit", "case"],
+    "requireProductPotencyRange": true,
+    "requireListing": true,
+    "requireFieldsByClass": {
+      "dried cannabis": ["strain.name", "strain.plantType"],
+      "cannabis extracts": ["processing.extractionMethods"],
+      "edible cannabis": ["ingredients"]
+    },
+    "requireFieldsByForm": {
+      "vapeCartridge": ["device.format"],
+      "vapeDisposable": ["device.format"],
+      "vapePod": ["device.format"],
+      "preRoll": ["preRoll.shape"],
+      "infusedPreRoll": ["preRoll.shape"]
+    },
+    "descriptionMaxLength": { "short": 200, "long": 1000 },
+    "minImages": 1,
+    "requireMediaRoles": ["labelArtworkImmediate"],
+    "barcode": {
+      "symbologies": {
+        "consumerUnit": ["GS1 DataMatrix", "GS1 DataBar Expanded", "GS1 DataBar Expanded Stacked"],
+        "case": ["GS1-128", "ITF-14", "UPC-A", "EAN-13"]
+      },
+      "requiredAIs": { "consumerUnit": ["01", "10", "13"], "case": ["01", "10"] },
+      "forbiddenAIs": ["90"]
+    },
+    "lotNumber": { "maxLength": 20, "forbiddenChars": "\\@#$^{}[]()/%\"" },
+    "requireLabReportPerLot": true,
+    "labReportDocumentRequired": true,
+    "freshness": {
+      "groups": {
+        "driedAndPreRolls": ["driedFlower", "milledFlower", "preRoll", "infusedPreRoll"],
+        "vapes": ["vapeCartridge", "vapeDisposable", "vapePod"],
+        "concentratesAndExtracts": ["concentrate", "hash", "kief", "rosin", "resin", "oil", "spray", "capsule", "otherExtract"],
+        "edibles": ["gummy", "chocolate", "bakedGood", "candy", "otherEdible"],
+        "beverages": ["beverage", "beverageEnhancer"],
+        "topicals": ["lotion", "balm", "bathProduct", "otherTopical"],
+        "seeds": ["seed"]
+      },
+      "limitsDays": {
+        "driedAndPreRolls": { "inbound": 122, "quarantine": 274 },
+        "vapes": { "inbound": 183, "quarantine": 365 },
+        "concentratesAndExtracts": { "inbound": 183, "quarantine": 365 },
+        "edibles": { "inbound": 122, "quarantine": 365 },
+        "beverages": { "inbound": 183, "quarantine": 365 },
+        "topicals": { "inbound": 183, "quarantine": 365 },
+        "seeds": { "inbound": 183, "quarantine": 365 }
+      }
+    }
+  },
+  "notes": [
+    "COA due for every lot at least 72 hours before the shipment reaches the OCS distribution centre, on the OCS COA form. COSTA lab report data can populate that form but does not replace it.",
+    "Master cases may not mix lots or packaging dates; packaging dates within a shipped lot may not span more than 30 days.",
+    "Shipping a product under a GTIN other than the one submitted, or changing a GTIN without notice, costs $250 per product.",
+    "OCS potency tier wording (Little to minimal ... Very strong) is display copy derived from potency; COSTA carries the numbers, not the tier."
+  ]
+}

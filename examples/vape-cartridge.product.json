@@ -1,0 +1,141 @@
+{
+  "@context": "https://gocosta.org/ns/costa-2.0.jsonld",
+  "@type": "CostaProduct",
+  "costaVersion": "2.0",
+  "costaId": "https://northshore.example/costa/products/c4d1a7e9-5e62-4f1d-8a2b-3b7c0d9f6e32",
+  "recordVersion": 1,
+  "recordUpdated": "2026-08-12T16:20:00Z",
+  "status": "active",
+  "conformsTo": [
+    "ca-federal/2.0",
+    "ca-on-ocs/2.0"
+  ],
+  "identifiers": {
+    "gtins": [
+      {
+        "gtin": "00628123000303",
+        "packagingLevel": "consumerUnit",
+        "validFrom": "2026-08-01",
+        "validThrough": null,
+        "status": "active",
+        "barcodes": [
+          {
+            "symbology": "GS1 DataMatrix",
+            "applicationIdentifiers": [
+              "01",
+              "10",
+              "13"
+            ]
+          }
+        ]
+      },
+      {
+        "gtin": "10628123000300",
+        "packagingLevel": "case",
+        "childGtin": "00628123000303",
+        "childQuantity": 50,
+        "validFrom": "2026-08-01",
+        "validThrough": null,
+        "status": "active",
+        "barcodes": [
+          {
+            "symbology": "GS1-128",
+            "applicationIdentifiers": [
+              "01",
+              "10"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "name": {
+    "en": "Northern Lights Live Resin 510 Cartridge 1 g",
+    "fr": "Cartouche 510 résine vivante Northern Lights 1 g"
+  },
+  "brand": {
+    "name": "Northshore"
+  },
+  "licenceHolder": {
+    "legalName": "Northshore Cannabis Co. Ltd. (fictional)",
+    "role": "processor",
+    "healthCanadaLicenceNumber": "LIC-XXXX-0000",
+    "phone": "+1 613 555 0100",
+    "email": "info@northshore.example"
+  },
+  "classOfCannabis": "cannabis extracts",
+  "productForm": "vapeCartridge",
+  "intendedUse": "inhalation",
+  "discreteUnits": false,
+  "netContent": {
+    "value": 1,
+    "unit": "g"
+  },
+  "potency": {
+    "totalThc": {
+      "unit": "mg/g",
+      "min": 760,
+      "max": 840
+    },
+    "totalCbd": {
+      "unit": "mg/g",
+      "min": 0,
+      "max": 5
+    }
+  },
+  "terpenes": {
+    "dominant": [
+      "beta-Myrcene",
+      "Limonene"
+    ],
+    "terpeneSource": "cannabisDerivedSameStrain"
+  },
+  "strain": {
+    "name": "Northern Lights",
+    "plantType": "indicaDominant",
+    "singleStrain": true
+  },
+  "processing": {
+    "extractionMethods": [
+      "hydrocarbon"
+    ],
+    "solventsUsed": [
+      "butane",
+      "propane"
+    ],
+    "solventless": false
+  },
+  "device": {
+    "format": "510Thread",
+    "batteryIncluded": false,
+    "hardwareCertifications": [
+      "UL 8139"
+    ]
+  },
+  "packaging": {
+    "childResistant": true,
+    "materials": [
+      "paperboard"
+    ]
+  },
+  "media": [
+    {
+      "url": "https://northshore.example/img/nl-cart.jpg",
+      "role": "front",
+      "gtin": "00628123000303"
+    },
+    {
+      "url": "https://northshore.example/labels/nl-cart.pdf",
+      "role": "labelArtworkImmediate",
+      "gtin": "00628123000303"
+    }
+  ],
+  "jurisdictions": [
+    {
+      "jurisdiction": "CA-ON",
+      "authority": "OCS",
+      "status": "submitted",
+      "category": "Vapes"
+    }
+  ]
+}

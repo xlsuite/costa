@@ -1,0 +1,24 @@
+{
+  "id": "ca-ab-aglc",
+  "version": "2.0",
+  "status": "provisional",
+  "jurisdiction": "CA-AB",
+  "authority": "Alberta Gaming, Liquor & Cannabis (AGLC)",
+  "description": "PROVISIONAL. Built from the national GS1 cannabis barcode rules that all 13 provincial and territorial wholesalers adopted. The AGLC Cannabis Licensed Producer Operations Manual (v9.0, 2025-07-15) has not yet been reviewed clause by clause. Do not rely on this profile for listing decisions until it is marked normative.",
+  "sources": [
+    { "title": "AGLC Cannabis Licensed Producer Operations Manual v9.0 (2025-07-15)", "url": "https://aglc.ca/forms/cannabis-licensed-producer-operations-manual", "checked": "not yet reviewed" },
+    { "title": "GS1 Canada, GS1 DataMatrix FAQ for the Canadian cannabis community", "url": "https://gs1ca.org/gs1ca-components/documents/Cannabis-GS1-DataMatrix-FAQ-en.pdf", "checked": "2026-11-02" }
+  ],
+  "rules": {
+    "requireLocales": ["en"],
+    "requireGtinLevels": ["consumerUnit", "case"],
+    "requireListing": true,
+    "barcode": {
+      "symbologies": {
+        "consumerUnit": ["GS1 DataMatrix", "GS1 DataBar Expanded", "GS1 DataBar Expanded Stacked"],
+        "case": ["GS1-128"]
+      },
+      "requiredAIs": { "consumerUnit": ["01", "10", "13"], "case": ["01", "10"] }
+    }
+  }
+}
