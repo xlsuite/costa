@@ -1,0 +1,680 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gocosta.org/schemas/costa-2.0.schema.json",
+  "title": "COSTA 2.0 document",
+  "description": "Core schema for COSTA 2.0 documents: a feed, a product record, a lot record or a lab report. This schema checks structure. Cross-field and regulatory rules are checked by the reference validator (tools/validate.mjs) and the jurisdiction profiles. See gocosta-schema-spec.md.",
+  "oneOf": [
+    { "$ref": "#/$defs/CostaFeed" },
+    { "$ref": "#/$defs/CostaProduct" },
+    { "$ref": "#/$defs/CostaLot" },
+    { "$ref": "#/$defs/CostaLabReport" }
+  ],
+  "$defs": {
+
+    "CostaFeed": {
+      "type": "object",
+      "description": "A publisher's complete or paged set of records.",
+      "required": ["@type", "costaVersion", "publisher", "generated", "sequence"],
+      "additionalProperties": false,
+      "properties": {
+        "@context": { "$ref": "#/$defs/JsonLdContext" },
+        "@type": { "const": "CostaFeed" },
+        "costaVersion": { "const": "2.0" },
+        "publisher": { "$ref": "#/$defs/Publisher" },
+        "generated": { "type": "string", "format": "date-time" },
+        "sequence": { "type": "integer", "minimum": 1, "description": "Increases every time the feed changes. Consumers ignore a feed whose sequence is lower than one they already processed." },
+        "nextPage": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "products": { "type": "array", "items": { "$ref": "#/$defs/CostaProduct" } },
+        "lots": { "type": "array", "items": { "$ref": "#/$defs/CostaLot" } },
+        "labReports": { "type": "array", "items": { "$ref": "#/$defs/CostaLabReport" } }
+      }
+    },
+
+    "CostaProduct": {
+      "type": "object",
+      "description": "Master data for one trade item. Identity is costaId, never the GTIN.",
+      "required": ["@type", "costaVersion", "costaId", "recordVersion", "recordUpdated", "status", "conformsTo", "identifiers", "name", "brand", "licenceHolder", "classOfCannabis", "productForm", "discreteUnits", "netContent"],
+      "additionalProperties": false,
+      "properties": {
+        "@context": { "$ref": "#/$defs/JsonLdContext" },
+        "@type": { "const": "CostaProduct" },
+        "@id": { "$ref": "#/$defs/HttpsUri" },
+        "costaVersion": { "const": "2.0" },
+        "costaId": { "$ref": "#/$defs/HttpsUri" },
+        "recordVersion": { "type": "integer", "minimum": 1 },
+        "recordUpdated": { "type": "string", "format": "date-time" },
+        "status": { "$ref": "#/$defs/ProductStatus" },
+        "conformsTo": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/ProfileId" } },
+        "identifiers": { "$ref": "#/$defs/ProductIdentifiers" },
+        "name": { "$ref": "#/$defs/LocalizedText" },
+        "brand": { "$ref": "#/$defs/Brand" },
+        "licenceHolder": { "$ref": "#/$defs/LicenceHolder" },
+        "classOfCannabis": { "$ref": "#/$defs/ClassOfCannabis" },
+        "productForm": { "$ref": "#/$defs/ProductForm" },
+        "intendedUse": { "$ref": "#/$defs/IntendedUse" },
+        "edibleForm": { "enum": ["solid", "nonSolid", "beverage"] },
+        "discreteUnits": { "type": "boolean" },
+        "dispensingMechanism": { "type": "boolean", "description": "True if the container or accessory dispenses the product in activations (sprays, metered pens)." },
+        "netContent": { "$ref": "#/$defs/NetContent" },
+        "unitCount": { "type": "integer", "minimum": 1 },
+        "unitNetContent": { "$ref": "#/$defs/NetContent" },
+        "driedEquivalentGrams": { "type": "number", "exclusiveMinimum": 0, "description": "Equivalent amount of dried cannabis per Schedule 3 of the Cannabis Act." },
+        "potency": { "$ref": "#/$defs/PotencyRanges" },
+        "cannabinoidsOther": { "type": "array", "items": { "$ref": "#/$defs/AnalyteRange" } },
+        "terpenes": { "$ref": "#/$defs/TerpeneProfile" },
+        "strain": { "$ref": "#/$defs/Strain" },
+        "cultivation": { "$ref": "#/$defs/Cultivation" },
+        "processing": { "$ref": "#/$defs/Processing" },
+        "ingredients": { "$ref": "#/$defs/LocalizedText" },
+        "allergens": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/Allergen" } },
+        "flavour": { "$ref": "#/$defs/LocalizedText" },
+        "preRoll": { "$ref": "#/$defs/PreRoll" },
+        "device": { "$ref": "#/$defs/Device" },
+        "packaging": { "$ref": "#/$defs/Packaging" },
+        "storageConditions": { "$ref": "#/$defs/LocalizedText" },
+        "descriptions": { "$ref": "#/$defs/Descriptions" },
+        "media": { "type": "array", "items": { "$ref": "#/$defs/MediaObject" } },
+        "jurisdictions": { "type": "array", "items": { "$ref": "#/$defs/JurisdictionListing" } },
+        "lots": { "type": "array", "items": { "$ref": "#/$defs/CostaLot" } },
+        "extensions": { "$ref": "#/$defs/Extensions" }
+      }
+    },
+
+    "CostaLot": {
+      "type": "object",
+      "description": "One lot or batch of a product, as packaged and labelled.",
+      "required": ["@type", "costaVersion", "lotId", "product", "gtin", "lotNumber", "packagingDate", "labelledPotency"],
+      "additionalProperties": false,
+      "properties": {
+        "@context": { "$ref": "#/$defs/JsonLdContext" },
+        "@type": { "const": "CostaLot" },
+        "costaVersion": { "const": "2.0" },
+        "lotId": { "$ref": "#/$defs/HttpsUri" },
+        "product": { "$ref": "#/$defs/HttpsUri" },
+        "gtin": { "$ref": "#/$defs/Gtin" },
+        "lotNumber": { "$ref": "#/$defs/LotNumber" },
+        "packagingDate": { "type": "string", "format": "date" },
+        "expiryDate": { "type": "string", "format": "date" },
+        "stabilityDataOnFile": { "type": "boolean", "description": "Required true when expiryDate is present (Cannabis Regulations s. 123.02)." },
+        "labelledPotency": { "$ref": "#/$defs/PotencyValues" },
+        "cannabinoidsOther": { "type": "array", "items": { "$ref": "#/$defs/AnalyteValue" } },
+        "terpenes": { "type": "array", "items": { "$ref": "#/$defs/AnalyteValue" } },
+        "labReports": { "type": "array", "items": { "$ref": "#/$defs/LabReportRef" } },
+        "qaRelease": { "$ref": "#/$defs/QaRelease" },
+        "recall": { "$ref": "#/$defs/Recall" },
+        "extensions": { "$ref": "#/$defs/Extensions" }
+      }
+    },
+
+    "CostaLabReport": {
+      "type": "object",
+      "description": "A certificate of analysis as structured data.",
+      "required": ["@type", "costaVersion", "reportId", "reportNumber", "laboratory", "client", "sample", "issuedDate", "panels", "overallConformance", "visibility"],
+      "additionalProperties": false,
+      "properties": {
+        "@context": { "$ref": "#/$defs/JsonLdContext" },
+        "@type": { "const": "CostaLabReport" },
+        "costaVersion": { "const": "2.0" },
+        "reportId": { "$ref": "#/$defs/HttpsUri" },
+        "reportNumber": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "revision": { "type": "integer", "minimum": 0 },
+        "supersedes": { "$ref": "#/$defs/HttpsUri" },
+        "laboratory": { "$ref": "#/$defs/Laboratory" },
+        "client": { "$ref": "#/$defs/Party" },
+        "sample": { "$ref": "#/$defs/Sample" },
+        "analysisStarted": { "type": "string", "format": "date" },
+        "analysisCompleted": { "type": "string", "format": "date" },
+        "issuedDate": { "type": "string", "format": "date" },
+        "authorizedBy": { "$ref": "#/$defs/Signatory" },
+        "panels": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/TestPanel" } },
+        "overallConformance": { "$ref": "#/$defs/Conformance" },
+        "document": { "$ref": "#/$defs/DocumentRef" },
+        "visibility": { "enum": ["public", "tradePartners", "restricted"] },
+        "extensions": { "$ref": "#/$defs/Extensions" }
+      }
+    },
+
+    "JsonLdContext": {
+      "description": "JSON-LD context. Use https://gocosta.org/ns/costa-2.0.jsonld.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "array", "items": { "type": "string", "format": "uri" } }
+      ]
+    },
+    "HttpsUri": { "type": "string", "format": "uri", "pattern": "^https://", "maxLength": 2048 },
+    "ProfileId": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[a-z]{2})?(-[a-z0-9]+)?/[0-9]+\\.[0-9]+$",
+      "description": "A conformance profile and its version, e.g. ca-federal/2.0 or ca-on-ocs/2.0."
+    },
+    "Gtin": {
+      "type": "string",
+      "pattern": "^[0-9]{14}$",
+      "description": "GTIN normalized to 14 digits (left-pad GTIN-8/12/13 with zeros). The check digit is verified by the validator."
+    },
+    "LotNumber": {
+      "type": "string",
+      "pattern": "^[!\"%&'()*+,\\-./0-9:;<=>?A-Z_a-z]{1,20}$",
+      "description": "Up to 20 characters from the GS1 AI (10) character set, so the lot can be encoded in a barcode."
+    },
+    "JurisdictionCode": { "type": "string", "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$", "description": "ISO 3166-2 subdivision code, e.g. CA-ON." },
+    "ProductStatus": { "enum": ["active", "discontinued", "withdrawn", "neverProduced"] },
+
+    "LocalizedText": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "minLength": 1, "maxLength": 5000 },
+        "fr": { "type": "string", "minLength": 1, "maxLength": 5000 }
+      }
+    },
+
+    "Publisher": {
+      "type": "object",
+      "required": ["name", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "url": { "$ref": "#/$defs/HttpsUri" },
+        "role": { "enum": ["licenceHolder", "brandOwner", "agent", "distributor", "retailer", "aggregator"] },
+        "healthCanadaLicenceNumbers": { "type": "array", "items": { "type": "string", "minLength": 3, "maxLength": 40 } },
+        "gs1CompanyPrefixes": { "type": "array", "items": { "type": "string", "pattern": "^[0-9]{4,12}$" } },
+        "jwksUrl": { "$ref": "#/$defs/HttpsUri" },
+        "contactEmail": { "type": "string", "format": "email" }
+      }
+    },
+
+    "ProductIdentifiers": {
+      "type": "object",
+      "required": ["gtins"],
+      "additionalProperties": false,
+      "properties": {
+        "gtins": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/GtinAssignment" } },
+        "sku": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "healthCanadaProductNotice": { "$ref": "#/$defs/ProductNotice" },
+        "jurisdictionSkus": { "type": "array", "items": { "$ref": "#/$defs/JurisdictionSku" } },
+        "supersedes": { "type": "array", "items": { "$ref": "#/$defs/Supersession" } },
+        "supersededBy": { "$ref": "#/$defs/HttpsUri" }
+      }
+    },
+
+    "GtinAssignment": {
+      "type": "object",
+      "description": "A GTIN as used by this product during a period. A GTIN can appear in more than one record over time; the validity window and the lot numbers tell them apart.",
+      "required": ["gtin", "packagingLevel", "validFrom", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "gtin": { "$ref": "#/$defs/Gtin" },
+        "packagingLevel": { "enum": ["consumerUnit", "innerPack", "case"] },
+        "childGtin": { "$ref": "#/$defs/Gtin" },
+        "childQuantity": { "type": "integer", "minimum": 1 },
+        "validFrom": { "type": "string", "format": "date" },
+        "validThrough": { "type": ["string", "null"], "format": "date" },
+        "status": { "enum": ["active", "retired"] },
+        "retiredReason": { "enum": ["discontinued", "neverProduced", "changeRequiresNewGtin", "transferred", "assignedInError", "other"] },
+        "gs1CompanyPrefix": { "type": "string", "pattern": "^[0-9]{4,12}$" },
+        "barcodes": { "type": "array", "items": { "$ref": "#/$defs/Barcode" } },
+        "note": { "type": "string", "maxLength": 1000 }
+      }
+    },
+
+    "Barcode": {
+      "type": "object",
+      "required": ["symbology", "applicationIdentifiers"],
+      "additionalProperties": false,
+      "properties": {
+        "symbology": { "enum": ["GS1 DataMatrix", "GS1 DataBar Expanded", "GS1 DataBar Expanded Stacked", "GS1-128", "UPC-A", "UPC-E", "EAN-13", "EAN-8", "ITF-14"] },
+        "applicationIdentifiers": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[0-9]{2,4}$" } },
+        "jurisdictions": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/JurisdictionCode" }, "description": "Jurisdictions this barcode variant is printed for. Omit if the same barcode is used everywhere." }
+      }
+    },
+
+    "ProductNotice": {
+      "type": "object",
+      "description": "Health Canada new cannabis product notice for this product.",
+      "additionalProperties": false,
+      "required": ["noticeId"],
+      "properties": {
+        "noticeId": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "submittedDate": { "type": "string", "format": "date" },
+        "authorizedSaleDate": { "type": "string", "format": "date" }
+      }
+    },
+
+    "JurisdictionSku": {
+      "type": "object",
+      "required": ["jurisdiction", "authority", "sku"],
+      "additionalProperties": false,
+      "properties": {
+        "jurisdiction": { "$ref": "#/$defs/JurisdictionCode" },
+        "authority": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "sku": { "type": "string", "minLength": 1, "maxLength": 50 }
+      }
+    },
+
+    "Supersession": {
+      "type": "object",
+      "required": ["costaId", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "costaId": { "$ref": "#/$defs/HttpsUri" },
+        "reason": { "enum": ["newFormulation", "netContentChange", "dimensionOrWeightChange", "brandChange", "classChange", "licenceHolderChange", "packagingHierarchyChange", "correction", "other"] },
+        "effectiveDate": { "type": "string", "format": "date" }
+      }
+    },
+
+    "Brand": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "url": { "$ref": "#/$defs/HttpsUri" },
+        "owner": { "type": "string", "maxLength": 200 }
+      }
+    },
+
+    "LicenceHolder": {
+      "type": "object",
+      "description": "The licence holder named on the label (Cannabis Regulations s. 123(1)(a)).",
+      "required": ["legalName", "role", "phone", "email"],
+      "additionalProperties": false,
+      "properties": {
+        "legalName": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "role": { "enum": ["processor", "cultivator"] },
+        "healthCanadaLicenceNumber": { "type": "string", "minLength": 3, "maxLength": 40 },
+        "phone": { "type": "string", "pattern": "^\\+?[0-9 ().-]{7,25}$" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+
+    "Party": {
+      "type": "object",
+      "required": ["legalName"],
+      "additionalProperties": false,
+      "properties": {
+        "legalName": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "healthCanadaLicenceNumber": { "type": "string", "minLength": 3, "maxLength": 40 }
+      }
+    },
+
+    "ClassOfCannabis": {
+      "description": "Class of cannabis as listed in Schedule 4 of the Cannabis Act and printed on the label. Also the reporting class under the proposed consolidated schedule to the Cannabis Tracking System Order (Canada Gazette, Part I, 2026-09-26).",
+      "enum": ["dried cannabis", "fresh cannabis", "cannabis plants", "cannabis plant seeds", "edible cannabis", "cannabis extracts", "cannabis topicals"]
+    },
+
+    "ProductForm": {
+      "description": "Consumer-facing format. Must be compatible with classOfCannabis (see spec section 4.3).",
+      "enum": [
+        "driedFlower", "milledFlower", "preRoll", "infusedPreRoll", "freshCannabis", "plant", "seed",
+        "vapeCartridge", "vapeDisposable", "vapePod", "concentrate", "hash", "kief", "rosin", "resin", "oil", "spray", "capsule", "otherExtract",
+        "gummy", "chocolate", "bakedGood", "candy", "beverage", "beverageEnhancer", "otherEdible",
+        "lotion", "balm", "bathProduct", "otherTopical"
+      ]
+    },
+
+    "IntendedUse": {
+      "description": "Intended use as stated on the label. Drives which potency statements are required.",
+      "enum": ["inhalation", "ingestion", "topical", "nasal", "rectal", "vaginal", "other"]
+    },
+
+    "NetContent": {
+      "type": "object",
+      "required": ["value", "unit"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "enum": ["g", "mL", "count"] }
+      }
+    },
+
+    "Range": {
+      "type": "object",
+      "required": ["unit", "min", "max"],
+      "additionalProperties": false,
+      "properties": {
+        "unit": { "enum": ["mg/g", "mg", "mg/mL"] },
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 }
+      }
+    },
+
+    "Quantity": {
+      "type": "object",
+      "required": ["unit", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "unit": { "enum": ["mg/g", "mg", "mg/mL"] },
+        "value": { "type": "number", "minimum": 0 }
+      }
+    },
+
+    "PotencyRanges": {
+      "type": "object",
+      "description": "Product-level expected range across lots, in the label basis for the class. Lot-level values are in CostaLot.labelledPotency.",
+      "additionalProperties": false,
+      "properties": {
+        "totalThc": { "$ref": "#/$defs/Range" },
+        "totalCbd": { "$ref": "#/$defs/Range" },
+        "totalThcPerUnit": { "$ref": "#/$defs/Range" },
+        "totalCbdPerUnit": { "$ref": "#/$defs/Range" },
+        "totalThcPerActivation": { "$ref": "#/$defs/Range" },
+        "totalCbdPerActivation": { "$ref": "#/$defs/Range" }
+      }
+    },
+
+    "PotencyValues": {
+      "type": "object",
+      "description": "Values exactly as printed on this lot's label.",
+      "additionalProperties": false,
+      "properties": {
+        "totalThc": { "$ref": "#/$defs/Quantity" },
+        "totalCbd": { "$ref": "#/$defs/Quantity" },
+        "totalThcPerUnit": { "$ref": "#/$defs/Quantity" },
+        "totalCbdPerUnit": { "$ref": "#/$defs/Quantity" },
+        "totalThcPerActivation": { "$ref": "#/$defs/Quantity" },
+        "totalCbdPerActivation": { "$ref": "#/$defs/Quantity" }
+      }
+    },
+
+    "AnalyteRange": {
+      "type": "object",
+      "required": ["analyte", "unit", "min", "max"],
+      "additionalProperties": false,
+      "properties": {
+        "analyte": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "unit": { "enum": ["mg/g", "mg", "mg/mL", "%"] },
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 }
+      }
+    },
+
+    "AnalyteValue": {
+      "type": "object",
+      "required": ["analyte", "unit", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "analyte": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "unit": { "enum": ["mg/g", "mg", "mg/mL", "%"] },
+        "value": { "type": "number", "minimum": 0 }
+      }
+    },
+
+    "TerpeneProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dominant": { "type": "array", "maxItems": 5, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 100 } },
+        "typical": { "type": "array", "items": { "$ref": "#/$defs/AnalyteRange" } },
+        "terpeneSource": { "enum": ["cannabisDerivedSameStrain", "cannabisDerivedOther", "botanicalDerived", "blend", "none"] }
+      }
+    },
+
+    "Strain": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "plantType": { "enum": ["indica", "indicaDominant", "hybrid", "sativaDominant", "sativa", "blend", "unspecified"] },
+        "lineage": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 200 } },
+        "singleStrain": { "type": "boolean" }
+      }
+    },
+
+    "Cultivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "growingMethod": { "enum": ["indoor", "greenhouse", "outdoor", "mixed"] },
+        "growingMedium": { "enum": ["soil", "coco", "rockwool", "hydroponic", "aquaponic", "living soil", "other"] },
+        "cultivatedIn": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/JurisdictionCode" } },
+        "organicCertification": { "type": "string", "maxLength": 200 },
+        "dryingMethod": { "type": "string", "maxLength": 200 },
+        "trimMethod": { "enum": ["hand", "machine", "mixed"] },
+        "irradiated": { "type": "boolean" }
+      }
+    },
+
+    "Processing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "extractionMethods": { "type": "array", "uniqueItems": true, "items": { "enum": ["supercriticalCo2", "subcriticalCo2", "ethanol", "hydrocarbon", "rosinPress", "iceWaterHash", "drySift", "distillation", "isolation", "other"] } },
+        "solventsUsed": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 100 } },
+        "solventless": { "type": "boolean" },
+        "carrierOil": { "type": "string", "maxLength": 200 },
+        "fullSpectrum": { "type": "boolean" }
+      }
+    },
+
+    "Allergen": {
+      "description": "Priority food allergens, gluten and added sulphites (Health Canada list).",
+      "enum": ["peanuts", "treeNuts", "sesame", "milk", "eggs", "fish", "crustaceans", "molluscs", "soy", "wheatOrTriticale", "mustard", "glutenSource", "sulphites"]
+    },
+
+    "PreRoll": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paperType": { "type": "string", "maxLength": 100 },
+        "filterType": { "type": "string", "maxLength": 100 },
+        "shape": { "enum": ["cone", "straight", "other"] },
+        "infused": { "type": "boolean" }
+      }
+    },
+
+    "Device": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format": { "enum": ["510Thread", "proprietaryPod", "allInOne", "other"] },
+        "platform": { "type": "string", "maxLength": 100 },
+        "batteryIncluded": { "type": "boolean" },
+        "rechargeable": { "type": "boolean" },
+        "hardwareCertifications": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 50 } }
+      }
+    },
+
+    "Packaging": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "childResistant": { "type": "boolean" },
+        "containerType": { "type": "string", "maxLength": 100 },
+        "materials": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 100 } }
+      }
+    },
+
+    "Descriptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "short": { "$ref": "#/$defs/LocalizedText" },
+        "long": { "$ref": "#/$defs/LocalizedText" }
+      }
+    },
+
+    "MediaObject": {
+      "type": "object",
+      "required": ["url", "role"],
+      "additionalProperties": false,
+      "properties": {
+        "url": { "$ref": "#/$defs/HttpsUri" },
+        "role": { "enum": ["front", "back", "left", "right", "top", "bottom", "inPackage", "productOut", "labelArtworkImmediate", "labelArtworkOutermost", "logo", "other"] },
+        "gtin": { "$ref": "#/$defs/Gtin" },
+        "mediaType": { "type": "string", "pattern": "^[a-z]+/[a-z0-9.+-]+$" },
+        "widthPx": { "type": "integer", "minimum": 1 },
+        "heightPx": { "type": "integer", "minimum": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+
+    "JurisdictionListing": {
+      "type": "object",
+      "required": ["jurisdiction", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "jurisdiction": { "$ref": "#/$defs/JurisdictionCode" },
+        "authority": { "type": "string", "maxLength": 100 },
+        "status": { "enum": ["submitted", "listed", "delisted", "notListed"] },
+        "category": { "type": "string", "maxLength": 100, "description": "Category as assigned by the provincial authority. COSTA does not define provincial taxonomies." },
+        "subcategory": { "type": "string", "maxLength": 100 },
+        "listedFrom": { "type": "string", "format": "date" },
+        "listedThrough": { "type": "string", "format": "date" },
+        "indigenousProductProgram": { "type": "boolean" },
+        "cultiveQuebec": { "type": "boolean" }
+      }
+    },
+
+    "LabReportRef": {
+      "type": "object",
+      "required": ["reportId", "scope"],
+      "additionalProperties": false,
+      "properties": {
+        "reportId": { "$ref": "#/$defs/HttpsUri" },
+        "scope": { "enum": ["finalForm", "inputCannabis", "inProcess"] },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+
+    "QaRelease": {
+      "type": "object",
+      "required": ["releasedDate"],
+      "additionalProperties": false,
+      "properties": {
+        "releasedDate": { "type": "string", "format": "date" },
+        "releasedByRole": { "type": "string", "maxLength": 100 }
+      }
+    },
+
+    "Recall": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["none", "underInvestigation", "recalled"] },
+        "recallDate": { "type": "string", "format": "date" },
+        "recallClass": { "enum": ["Type I", "Type II", "Type III"] },
+        "noticeUrl": { "$ref": "#/$defs/HttpsUri" }
+      }
+    },
+
+    "Laboratory": {
+      "type": "object",
+      "required": ["legalName", "accreditations"],
+      "additionalProperties": false,
+      "properties": {
+        "legalName": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "healthCanadaLicenceNumber": { "type": "string", "minLength": 3, "maxLength": 40 },
+        "accreditations": { "type": "array", "items": { "$ref": "#/$defs/Accreditation" } },
+        "url": { "$ref": "#/$defs/HttpsUri" }
+      }
+    },
+
+    "Accreditation": {
+      "type": "object",
+      "required": ["standard", "body", "certificateNumber"],
+      "additionalProperties": false,
+      "properties": {
+        "standard": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "body": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "certificateNumber": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "scopeUrl": { "$ref": "#/$defs/HttpsUri" },
+        "validThrough": { "type": "string", "format": "date" }
+      }
+    },
+
+    "Sample": {
+      "type": "object",
+      "required": ["sampleId", "lotNumber", "sampleType", "matrix"],
+      "additionalProperties": false,
+      "properties": {
+        "sampleId": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "lotNumber": { "$ref": "#/$defs/LotNumber" },
+        "gtin": { "$ref": "#/$defs/Gtin" },
+        "product": { "$ref": "#/$defs/HttpsUri" },
+        "sampleType": { "enum": ["finalForm", "inputCannabis", "inProcess"] },
+        "matrix": { "enum": ["driedFlower", "freshCannabis", "extractConcentrate", "extractOil", "extractVape", "edibleSolid", "edibleNonSolid", "beverage", "topical", "plantMaterial", "other"] },
+        "collectedDate": { "type": "string", "format": "date" },
+        "receivedDate": { "type": "string", "format": "date" },
+        "sampleSize": { "$ref": "#/$defs/NetContent" }
+      }
+    },
+
+    "Signatory": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "title": { "type": "string", "maxLength": 200 },
+        "signedDate": { "type": "string", "format": "date" }
+      }
+    },
+
+    "TestPanel": {
+      "type": "object",
+      "required": ["panel", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "panel": { "enum": ["potency", "terpenes", "microbial", "mycotoxins", "heavyMetals", "pesticides", "residualSolvents", "moisture", "waterActivity", "foreignMatter", "dissolution", "disintegration", "homogeneity", "other"] },
+        "method": { "$ref": "#/$defs/Method" },
+        "status": { "$ref": "#/$defs/Conformance" },
+        "results": { "type": "array", "items": { "$ref": "#/$defs/TestResult" } }
+      }
+    },
+
+    "Method": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "reference": { "type": "string", "maxLength": 300 },
+        "validated": { "type": "boolean" },
+        "technique": { "type": "string", "maxLength": 100 }
+      }
+    },
+
+    "TestResult": {
+      "type": "object",
+      "required": ["analyte", "qualifier", "unit"],
+      "additionalProperties": false,
+      "properties": {
+        "analyte": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "casNumber": { "type": "string", "pattern": "^[0-9]{2,7}-[0-9]{2}-[0-9]$" },
+        "qualifier": { "enum": ["=", "<LOQ", "<LOD", "ND", ">ULOQ"] },
+        "value": { "type": "number" },
+        "unit": { "type": "string", "minLength": 1, "maxLength": 20 },
+        "loq": { "type": "number", "minimum": 0 },
+        "lod": { "type": "number", "minimum": 0 },
+        "limit": { "type": "number", "minimum": 0 },
+        "limitType": { "enum": ["max", "min", "range"] },
+        "uncertainty": { "type": "number", "minimum": 0 },
+        "conforms": { "type": "boolean" }
+      }
+    },
+
+    "Conformance": { "enum": ["pass", "fail", "informational", "notTested"] },
+
+    "DocumentRef": {
+      "type": "object",
+      "required": ["url", "mediaType", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "url": { "$ref": "#/$defs/HttpsUri" },
+        "mediaType": { "type": "string", "pattern": "^[a-z]+/[a-z0-9.+-]+$" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "pages": { "type": "integer", "minimum": 1 }
+      }
+    },
+
+    "Extensions": {
+      "type": "object",
+      "description": "Publisher-specific data. Keys must be namespaced (prefix:name). Consumers must ignore keys they do not understand.",
+      "propertyNames": { "pattern": "^[a-z][a-z0-9-]*:[A-Za-z][A-Za-z0-9_-]*$" },
+      "additionalProperties": { "type": ["string", "number", "boolean"] }
+    }
+  }
+}
