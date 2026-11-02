@@ -1,0 +1,14 @@
+{
+  "id": "ca-federal",
+  "version": "2.0",
+  "status": "normative",
+  "jurisdiction": "CA",
+  "authority": "Health Canada",
+  "description": "Rules from the Cannabis Act and Cannabis Regulations that apply to every product sold in Canada. The checks are implemented in tools/validate.mjs (checkCanadaFederal, checkLotCanada); this file declares the profile and its sources.",
+  "sources": [
+    { "title": "Cannabis Act, S.C. 2018, c. 16, Schedules 3 and 4", "url": "https://laws-lois.justice.gc.ca/eng/acts/C-24.5/", "checked": "2026-11-02" },
+    { "title": "Cannabis Regulations, SOR/2018-144, ss. 89-102.7 and 123-132.19 (consolidated to 2026-09-30, incl. SOR/2025-43)", "url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-144/", "checked": "2026-11-02" },
+    { "title": "Proposed Order Amending the Cannabis Tracking System Order (Streamlining of Requirements), Canada Gazette Part I, Vol. 160, No. 39", "url": "https://gazette.gc.ca/rp-pr/p1/2026/2026-09-26/html/reg1-eng.html", "checked": "2026-11-02" }
+  ],
+  "rules": {}
+}

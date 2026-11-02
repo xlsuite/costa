@@ -1,0 +1,38 @@
+{
+  "id": "ca-bc-bcldb",
+  "version": "2.0",
+  "status": "normative",
+  "jurisdiction": "CA-BC",
+  "authority": "BC Liquor Distribution Branch (BC Cannabis Wholesale)",
+  "description": "Data BC LDB Wholesale needs at product registration. Field mapping to the BCLDB Wholesale Product Catalog is in profiles/README.md.",
+  "sources": [
+    { "title": "BCLDB Wholesale Cannabis Product Registration Guide (2026-06)", "url": "https://www.bcldb.com/sites/default/files/2026-06/LDB_Wholesale_Cannabis_Product_Registration_Guide.pdf", "checked": "2026-11-02" },
+    { "title": "BCLDB Wholesale Product Catalog Definitions (2026-06)", "url": "https://www.bcldb.com/sites/default/files/2026-06/Wholesale_Product_Catalog_Definitions.pdf", "checked": "2026-11-02" }
+  ],
+  "rules": {
+    "requireLocales": ["en"],
+    "requireGtinLevels": ["consumerUnit", "case"],
+    "requireProductPotencyRange": true,
+    "requireDriedEquivalent": true,
+    "requireListing": true,
+    "requireFields": ["strain.plantType", "cultivation.growingMethod", "packaging.materials"],
+    "requireFieldsByClass": {
+      "dried cannabis": ["strain.name", "terpenes.dominant"],
+      "cannabis extracts": ["processing.extractionMethods", "terpenes.dominant"]
+    },
+    "minImages": 2,
+    "barcode": {
+      "symbologies": {
+        "consumerUnit": ["GS1 DataMatrix", "GS1 DataBar Expanded", "GS1 DataBar Expanded Stacked"],
+        "case": ["GS1-128"]
+      },
+      "requiredAIs": { "consumerUnit": ["01", "10", "13"], "case": ["01", "10", "13"] }
+    },
+    "requireLabReportPerLot": false
+  },
+  "notes": [
+    "Image files must be named with the unit GTIN; COSTA media objects carry the gtin so a consumer can generate the file name.",
+    "Potency ranges must match what was approved with BCLDB Category Management.",
+    "BCLDB's own Category, Subcategory and Class hierarchy is assigned by BCLDB; record it in jurisdictions[].category and .subcategory."
+  ]
+}
